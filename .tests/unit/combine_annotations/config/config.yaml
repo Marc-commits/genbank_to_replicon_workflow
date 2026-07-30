@@ -1,0 +1,13 @@
+---
+input:
+  mode: "genbank"
+  genbank: "resources/unused.gb"
+  contig_name: "test_plasmid"
+  genes:
+    GFP: "GFPMUT2"
+
+igv_genome:
+  id: "test_plasmid"
+  name: "test_plasmid"
+
+output_prefix: "results/bowtie2_index/combined"

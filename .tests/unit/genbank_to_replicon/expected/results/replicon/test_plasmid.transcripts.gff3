@@ -1,0 +1,8 @@
+test_plasmid	genbank_to_replicon	transcript	151	240	.	+	.	ID=GFP_transcript1;Name=GFP;associated_gene=GFP
+###
+test_plasmid	genbank_to_replicon	transcript	301	390	.	+	.	ID=SmSpR_transcript1;Name=SmSpR;associated_gene=SmSpR
+###
+test_plasmid	genbank_to_replicon	transcript	451	540	.	+	.	ID=rop_transcript1;Name=rop;associated_gene=rop
+###
+test_plasmid	genbank_to_replicon	transcript	1	90	.	+	.	ID=bla_transcript1;Name=bla;associated_gene=bla
+###

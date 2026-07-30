@@ -1,0 +1,73 @@
+---
+# .pre-commit-config.yaml
+#
+# Covers: Snakefile + *.smk, Python scripts (.py), Markdown, YAML,
+#         conda envs, project-wide version policy.
+#
+# Prerequisites:
+#   System : python3, uv, pre-commit, snakemake (>=8), snakefmt,
+#            graphviz (dot), conda/mamba
+#
+# Usage:
+#   pre-commit install --install-hooks
+#   pre-commit run --all-files
+
+repos:
+
+  # ── Common file-quality gates ──────────────────────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast
+        files: 'workflow/scripts/.*\.py$'
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: check-added-large-files
+      - id: detect-private-key
+      - id: debug-statements
+
+  # ── Markdown linting ───────────────────────────────────────────────────────
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.44.0
+    hooks:
+      - id: markdownlint
+        exclude: '(^|/)\.tests/'
+
+  # ── YAML linting ───────────────────────────────────────────────────────────
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.38.0
+    hooks:
+      - id: yamllint
+        args: [--strict]
+
+  # ── Snakemake format ───────────────────────────────────────────────────────
+  - repo: https://github.com/snakemake/snakefmt
+    rev: v0.10.2
+    hooks:
+      - id: snakefmt
+
+  # ── Shared project/py/snakemake policy hooks ───────────────────────────────
+  # All three workflow/scripts/*.py files are invoked via Snakemake's
+  # `script:` directive (no argv/CLI, no shebang, never marked executable),
+  # so py-shebang/py-help-version (which only check executable files)
+  # naturally skip them. py-metadata does not gate on the executable bit,
+  # so tests/ and .tests/ (pytest helper modules + test files, not
+  # project deliverables) are excluded explicitly below.
+  - repo: https://github.com/Marc-commits/pre-commit-hooks
+    rev: v0.3.3
+    hooks:
+      - id: validate-config
+      - id: snakemake-lint
+      - id: conda-env-validate
+      - id: snakemake-rulegraph
+      - id: snakedeploy-pin-conda-envs
+      - id: py-shebang
+      - id: py-marimo-check
+      - id: py-help-version
+      - id: py-metadata
+        exclude: '(^|/)(tests|\.tests)/'
+      - id: readme-no-local-paths
+      - id: readme-url-check

@@ -1,0 +1,16 @@
+---
+input:
+  mode: "genbank"
+  genbank: "resources/test_plasmid.gb"
+  contig_name: "test_plasmid"
+  genes:
+    GFP: "GFPMUT2"
+    SmSpR: "AadA"
+    rop: "rop gene"
+    bla: "bla gene"
+
+igv_genome:
+  id: "test_plasmid"
+  name: "test_plasmid"
+
+output_prefix: "results/bowtie2_index/combined"

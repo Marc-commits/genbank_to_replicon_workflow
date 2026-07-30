@@ -1,0 +1,44 @@
+---
+$schema: "https://json-schema.org/draft/2020-12/schema"
+description: genbank_to_replicon_workflow configuration
+type: object
+properties:
+  input:
+    type: object
+    properties:
+      mode:
+        type: string
+        enum: ["genbank", "fasta_gff"]
+      genbank:
+        type: string
+      fasta:
+        type: string
+      gff3:
+        type: string
+      contig_name:
+        type: string
+      genes:
+        type: object
+        additionalProperties:
+          type: string
+    required: ["mode", "contig_name"]
+  base_genome:
+    type: object
+    properties:
+      fasta:
+        type: string
+      genes_gff:
+        type: string
+      transcripts_gff:
+        type: string
+  igv_genome:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    required: ["id", "name"]
+  output_prefix:
+    type: string
+required: ["input", "igv_genome", "output_prefix"]

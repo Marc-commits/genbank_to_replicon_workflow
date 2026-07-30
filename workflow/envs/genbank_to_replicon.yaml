@@ -1,0 +1,9 @@
+---
+name: genbank_to_replicon
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - biopython>=1.83
+  - gffutils>=0.12

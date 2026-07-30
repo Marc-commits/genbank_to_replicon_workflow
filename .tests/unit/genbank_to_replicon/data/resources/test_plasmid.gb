@@ -1,0 +1,31 @@
+LOCUS       test_plasmid             600 bp    DNA     circular UNK 01-JAN-1980
+DEFINITION  .
+ACCESSION   test_plasmid
+VERSION     test_plasmid
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..90
+                     /label="bla gene"
+     CDS             151..240
+                     /label="GFPMUT2"
+     CDS             301..390
+                     /label="AadA"
+     gene            451..540
+                     /label="rop gene"
+     primer          11..20
+                     /label="some primer"
+ORIGIN
+        1 aagcccaata aaccactctg actggccgaa tagggatata ggcaacgaca tgtgcggcga
+       61 cccttgcgac agtgacgctt tcgccgttgc ctaaacctat ttgaaggagt ctagcagccg
+      121 cagtaaggca caatacctcg tccgtgttac cagaccaaac aagacgtcct cttcaatgtt
+      181 taaatgaccc tctcgtcata aaacctttct actatgtgtt ccgcaagaat caacaactac
+      241 aatggcgcgt cgtgaataac gcgacggctg agacgaacgg cgcgtgaatg aagcgcttaa
+      301 acagctcagg agccagtccc ctacgtcgca tatcctggcc actggaggtg aagcgaatgg
+      361 tatcgatacg taggaggtgt gccttcgtag gctgtttctc aggacgccca actattcttt
+      421 ccaatcctac atctgtttct tgcgtcgtag cgggaccctc cattgttact tattaggttc
+      481 tcgttatgtc tcataatctc agtgctggtg tgataagcaa accaccctac tggcacgaag
+      541 ttcacagaag tgagattatg tctcgtttgg cagtcttgat gctcggggga cacttcttta
+//

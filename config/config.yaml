@@ -1,0 +1,23 @@
+---
+input:
+  mode: "genbank"  # or "fasta_gff"
+  genbank: "resources/example.gb"
+  fasta: "resources/example.fasta"  # mode=fasta_gff only
+  gff3: "resources/example.gff3"  # mode=fasta_gff only
+  contig_name: "plasmid1"
+  genes:  # mode=genbank only: output-name -> /label substring match
+    GFP: "GFPMUT2"
+    SmSpR: "AadA"
+    rop: "rop gene"
+    bla: "bla gene"
+
+base_genome:  # optional: fasta/GFFs of an existing genome to combine with
+  fasta: ""
+  genes_gff: ""
+  transcripts_gff: ""
+
+igv_genome:
+  id: "plasmid1"
+  name: "plasmid1"
+
+output_prefix: "results/bowtie2_index/combined"

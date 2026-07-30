@@ -1,0 +1,6 @@
+[submodule "submodules/bowtie2_build_index_workflow"]
+	path = submodules/bowtie2_build_index_workflow
+	url = https://github.com/Marc-commits/bowtie2_build_index_workflow.git
+[submodule "submodules/make_IGV_genome_workflow"]
+	path = submodules/make_IGV_genome_workflow
+	url = https://github.com/Marc-commits/make_IGV_genome_workflow.git
