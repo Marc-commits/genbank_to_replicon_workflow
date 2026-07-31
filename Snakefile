@@ -9,7 +9,11 @@ include: "workflow/rules/parse_replicon.smk"
 include: "workflow/rules/combine.smk"
 
 
-_bowtie2_sequences = [replicon_output("fasta")]
+# str(...): replicon_output() returns a live Snakemake _IOFile object whose
+# .rule back-reference drags the whole (unpicklable) workflow graph into
+# `config`, breaking script-preamble pickling for any --use-conda rule in
+# nested modules that read config["sequences"] etc. Plain path strings only.
+_bowtie2_sequences = [str(replicon_output("fasta"))]
 if HAS_BASE_GENOME:
     _bowtie2_sequences.append(config["base_genome"]["fasta"])
 
@@ -30,8 +34,8 @@ use rule * from bowtie2 as bowtie2_*
 
 
 _igv_module_config = {
-    "fasta": rules.bowtie2_combine_sequences.output.fasta,
-    "genefile": rules.combine_annotations.output.genes_gff,
+    "fasta": str(rules.bowtie2_combine_sequences.output.fasta),
+    "genefile": str(rules.combine_annotations.output.genes_gff),
     "genome_id": config["igv_genome"]["id"],
     "genome_name": config["igv_genome"]["name"],
     "output": f"{OUTPUT_PREFIX}.genome",
