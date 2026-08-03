@@ -38,7 +38,7 @@ _igv_module_config = {
     "genefile": str(rules.combine_annotations.output.genes_gff),
     "genome_id": config["igv_genome"]["id"],
     "genome_name": config["igv_genome"]["name"],
-    "output": f"{OUTPUT_PREFIX}.genome",
+    "output": f"{OUTPUT_PREFIX}.json",
 }
 
 

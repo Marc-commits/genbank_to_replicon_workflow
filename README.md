@@ -3,8 +3,8 @@
 A Snakemake workflow: parse a replicon (plasmid, phage, small extra
 chromosome, ...) from either a GenBank record or a FASTA+GFF3 pair, select
 named genes of interest, optionally combine it with an existing base
-genome, and produce a bowtie2 index plus an IGV `.genome` archive ready for
-downstream RNA-seq analysis. Composes two smaller reusable modules
+genome, and produce a bowtie2 index plus an IGV JSON genome descriptor ready
+for downstream RNA-seq analysis. Composes two smaller reusable modules
 (included as git submodules) rather than reimplementing indexing/IGV logic.
 
 ## What it does
@@ -25,8 +25,8 @@ downstream RNA-seq analysis. Composes two smaller reusable modules
    `bowtie2_*`) — concatenates the replicon FASTA (+ base genome FASTA, if
    configured) and builds a bowtie2 index.
 4. **IGV genome** (`make_IGV_genome_workflow` submodule, prefixed `igv_*`)
-   — packages the combined FASTA + combined genes GFF into an IGV
-   `.genome` archive.
+   — builds a flat IGV JSON genome descriptor (`.json`) referencing the
+   combined FASTA, its `.fai` index, and the combined genes GFF.
 
 ## Usage as a standalone workflow
 
