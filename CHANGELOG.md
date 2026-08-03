@@ -5,6 +5,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-03
+
+### Changed
+
+- **Breaking:** bumped `submodules/make_IGV_genome_workflow` to `0.2.0`,
+  which switches the IGV genome output from a legacy zip `.genome` archive
+  to a flat IGV JSON genome descriptor. Fixes IGV Desktop failing to load
+  the bundled `.fai` from a `.genome` zip when opened over a WSL-mounted
+  network share. The `igv` module's `output` config value now ends in
+  `.json` instead of `.genome` (`Snakefile`); downstream consumers must
+  update any hardcoded `.genome` paths accordingly.
+
 ## [0.1.1] - 2026-07-31
 
 ### Fixed
