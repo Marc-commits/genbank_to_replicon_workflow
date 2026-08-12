@@ -12,3 +12,12 @@
   `.tests/unit/test_X.py` needing `__init__.py` files to collect together)
   is a latent bug in the parent `CyanoBulkRNAseq_SE_workflow` repo too —
   consider backporting the `__init__.py` fix there.
+- `rule all` now depends on `rules.bowtie2_bowtie2_build_index_workflow_all.input`
+  and `rules.igv_make_igv_genome_workflow_all.input` (the submodules' own
+  aggregators) instead of bypassing them via individual rule outputs;
+  `bowtie2_build_index_workflow`'s misleading docstring endorsing the
+  bypass was also fixed upstream (submodule bumped to `ffa672d`).
+  `CyanoBulkRNAseq_SE_workflow` (and its `_feat_vennupsetr` variant) still
+  references `rules.genbank_replicon_bowtie2_bowtie2_build.output` directly
+  rather than this repo's `rules.genbank_replicon_all.input` — consider
+  updating that consumer separately, see its own TODO.md entry.
