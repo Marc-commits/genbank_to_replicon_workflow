@@ -1,5 +1,3 @@
-submodules/bowtie2_build_index_workflow/workflow/scripts/combine_sequences.py:22:version: 0.1.0
-submodules/make_IGV_genome_workflow/workflow/scripts/make_igv_genome.sh:6:# Version: 2.0.0
 workflow/scripts/combine_annotations.py:24:version: 0.1.0
 workflow/scripts/fasta_gff3_to_replicon.py:33:version: 0.1.0
 workflow/scripts/genbank_to_replicon.py:28:version: 0.1.0
