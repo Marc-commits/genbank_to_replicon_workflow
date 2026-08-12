@@ -54,6 +54,6 @@ use rule * from igv as igv_*
 
 rule all:
     input:
-        rules.bowtie2_bowtie2_build.output,
-        rules.igv_make_igv_genome.output,
+        rules.bowtie2_bowtie2_build_index_workflow_all.input,
+        rules.igv_make_igv_genome_workflow_all.input,
     default_target: True

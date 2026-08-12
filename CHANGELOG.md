@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+- Fixed: `rule all` now depends on the submodules' own aggregator rules
+  (`rules.bowtie2_bowtie2_build_index_workflow_all.input`,
+  `rules.igv_make_igv_genome_workflow_all.input`) instead of bypassing them
+  via individual rule outputs, restoring the intended
+  `parent_all -> submodule_all -> rule` dependency hierarchy. Bumped
+  `submodules/bowtie2_build_index_workflow` to pick up the corresponding
+  docstring fix.
+
 ## [0.2.0] - 2026-08-03
 
 ### Changed
