@@ -9,7 +9,7 @@ env:
     find workflow/envs/ -type f -iname "*.yaml" -print0 | xargs -0 -P 1 -I {} sh -c 'conda env create  --solver libmamba --dry-run --prefix "$(mktemp -d)" -f "{}"'
 
 dry:
-    snakemake -n
+    snakemake -n --configfile config/config.yaml
 
 pre-commit:
     pre-commit run --all-files
