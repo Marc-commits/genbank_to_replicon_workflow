@@ -16,7 +16,8 @@
   and `rules.igv_make_igv_genome_workflow_all.input` (the submodules' own
   aggregators) instead of bypassing them via individual rule outputs;
   `bowtie2_build_index_workflow`'s misleading docstring endorsing the
-  bypass was also fixed upstream (submodule bumped to `ffa672d`).
+  bypass was also fixed upstream (fix landed in `ffa672d`; submodule now
+  tracks upstream `main` at `c89f3c2`).
   `CyanoBulkRNAseq_SE_workflow` (and its `_feat_vennupsetr` variant) still
   references `rules.genbank_replicon_bowtie2_bowtie2_build.output` directly
   rather than this repo's `rules.genbank_replicon_all.input` — consider

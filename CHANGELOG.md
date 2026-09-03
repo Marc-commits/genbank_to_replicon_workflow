@@ -12,6 +12,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `justfile`: added a `version-map:` recipe to (re)generate
   `.version-map` via `grep` over tracked files.
 
+### Changed (Unreleased)
+
+- Bumped both submodules to their upstream `main`:
+  `bowtie2_build_index_workflow` to `c89f3c2` (justfile/CHANGELOG chore
+  commits only) and `make_IGV_genome_workflow` to `a37361a` / `v0.1.1`
+  (adds an additive `--tldr` flag to `make_igv_genome.sh`; build logic
+  unchanged). No change to rule names, conda envs, the DAG, or workflow
+  outputs.
+
 - Fixed: `rule all` now depends on the submodules' own aggregator rules
   (`rules.bowtie2_bowtie2_build_index_workflow_all.input`,
   `rules.igv_make_igv_genome_workflow_all.input`) instead of bypassing them
