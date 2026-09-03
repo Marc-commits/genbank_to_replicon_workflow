@@ -5,14 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Added (Unreleased)
+## [0.3.1] - 2026-09-03
+
+### Added (0.3.1)
 
 - `justfile`: added `env:`/`lint:` recipes to dry-run validate
   `workflow/envs/*.yaml` conda envs and lint the Snakemake workflow.
 - `justfile`: added a `version-map:` recipe to (re)generate
   `.version-map` via `grep` over tracked files.
 
-### Changed (Unreleased)
+### Changed (0.3.1)
 
 - Bumped both submodules to their upstream `main`:
   `bowtie2_build_index_workflow` to `c89f3c2` (justfile/CHANGELOG chore
@@ -21,7 +23,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   unchanged). No change to rule names, conda envs, the DAG, or workflow
   outputs.
 
-- Fixed: `rule all` now depends on the submodules' own aggregator rules
+## [0.3.0] - 2026-08-12
+
+### Fixed (0.3.0)
+
+- `rule all` now depends on the submodules' own aggregator rules
   (`rules.bowtie2_bowtie2_build_index_workflow_all.input`,
   `rules.igv_make_igv_genome_workflow_all.input`) instead of bypassing them
   via individual rule outputs, restoring the intended
