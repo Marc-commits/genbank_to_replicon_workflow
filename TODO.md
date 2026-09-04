@@ -22,3 +22,14 @@
   references `rules.genbank_replicon_bowtie2_bowtie2_build.output` directly
   rather than this repo's `rules.genbank_replicon_all.input` — consider
   updating that consumer separately, see its own TODO.md entry.
+
+## Script-audit findings (from `workflow/scripts/*_README.md`, 2026-09-04)
+
+- `combine_annotations.py` is concatenation only — a malformed input GFF yields
+  a malformed combined GFF with no error raised. `combine_annotations_README.md:33`
+- `genbank_to_replicon.py`: `/label` substring match can over-match when two
+  features share a label substring; first match in file order wins.
+  `genbank_to_replicon_README.md:47`
+- `genbank_to_replicon.py`: only `gene`/`CDS` feature types are scanned — a
+  feature of interest recorded under another SeqFeature type is missed.
+  `genbank_to_replicon_README.md:53`
