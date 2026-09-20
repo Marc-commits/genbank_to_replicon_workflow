@@ -45,3 +45,4 @@
 - `genbank_to_replicon.py`: only `gene`/`CDS` feature types are scanned — a
   feature of interest recorded under another SeqFeature type is missed.
   `genbank_to_replicon_README.md:53`
+- [ ] Confirm a self-hosted runner labeled 'self-hosted' is registered and that this repo's first PR exercises .github/workflows/pre-commit.yml end-to-end.
