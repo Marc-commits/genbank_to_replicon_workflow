@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed (Unreleased)
+
+- Bumped `bowtie2_build_index_workflow` to `f480eb5`: its `bowtie2_build`
+  rule no longer has a `benchmark:` directive, so consuming workflows can
+  mark it cache-eligible with `use rule ... with: cache: True`
+  ([snakemake#2238](https://github.com/snakemake/snakemake/issues/2238)).
+  No change to rule names, conda envs, outputs or the DAG.
+
 ## [0.3.1] - 2026-09-03
 
 ### Added (0.3.1)
