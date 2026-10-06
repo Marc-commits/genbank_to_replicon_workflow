@@ -5,6 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added (Unreleased)
+
+- Base-genome-only mode: `input` (the replicon) may be omitted when
+  `base_genome.{fasta,genes_gff,transcripts_gff}` are all set. The bowtie2
+  index, IGV genome and combined GFFs are then built from the base genome
+  alone, so consumers without an extra plasmid can build their reference
+  with this workflow. The schema enforces "`input` or a complete
+  `base_genome`"; `combine_annotations.py` bumped to 0.2.0 to tolerate
+  absent replicon GFFs. Existing replicon configs are unaffected.
+
 ### Changed (Unreleased)
 
 - Bumped `bowtie2_build_index_workflow` to `f480eb5`: its `bowtie2_build`

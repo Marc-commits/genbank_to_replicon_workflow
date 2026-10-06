@@ -41,4 +41,12 @@ properties:
     required: ["id", "name"]
   output_prefix:
     type: string
-required: ["input", "igv_genome", "output_prefix"]
+required: ["igv_genome", "output_prefix"]
+# `input` (replicon) may be omitted for a base-genome-only build, in which
+# case base_genome must provide the fasta and both GFFs.
+anyOf:
+  - required: ["input"]
+  - properties:
+      base_genome:
+        required: ["fasta", "genes_gff", "transcripts_gff"]
+    required: ["base_genome"]

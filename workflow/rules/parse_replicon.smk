@@ -1,3 +1,6 @@
+# None for a base-genome-only build (no replicon is parsed)
+REPLICON_RULE = None
+
 if MODE == "genbank":
 
     rule genbank_to_replicon:
@@ -7,15 +10,15 @@ if MODE == "genbank":
             fasta=f"results/replicon/{CONTIG_NAME}.fasta",
             genes_gff=f"results/replicon/{CONTIG_NAME}.genes.gff3",
             transcripts_gff=f"results/replicon/{CONTIG_NAME}.transcripts.gff3",
-        params:
-            contig_name=CONTIG_NAME,
-            genes=config["input"]["genes"],
         log:
             "logs/genbank_to_replicon/genbank_to_replicon.log",
         benchmark:
             "benchmarks/genbank_to_replicon/genbank_to_replicon.txt"
         conda:
             "../envs/genbank_to_replicon.yaml"
+        params:
+            contig_name=CONTIG_NAME,
+            genes=config["input"]["genes"],
         script:
             "../scripts/genbank_to_replicon.py"
 
@@ -31,14 +34,14 @@ elif MODE == "fasta_gff":
             fasta=f"results/replicon/{CONTIG_NAME}.fasta",
             genes_gff=f"results/replicon/{CONTIG_NAME}.genes.gff3",
             transcripts_gff=f"results/replicon/{CONTIG_NAME}.transcripts.gff3",
-        params:
-            contig_name=CONTIG_NAME,
         log:
             "logs/fasta_gff3_to_replicon/fasta_gff3_to_replicon.log",
         benchmark:
             "benchmarks/fasta_gff3_to_replicon/fasta_gff3_to_replicon.txt"
         conda:
             "../envs/genbank_to_replicon.yaml"
+        params:
+            contig_name=CONTIG_NAME,
         script:
             "../scripts/fasta_gff3_to_replicon.py"
 

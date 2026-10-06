@@ -13,7 +13,7 @@ include: "workflow/rules/combine.smk"
 # .rule back-reference drags the whole (unpicklable) workflow graph into
 # `config`, breaking script-preamble pickling for any --use-conda rule in
 # nested modules that read config["sequences"] etc. Plain path strings only.
-_bowtie2_sequences = [str(replicon_output("fasta"))]
+_bowtie2_sequences = [str(replicon_output("fasta"))] if HAS_REPLICON else []
 if HAS_BASE_GENOME:
     _bowtie2_sequences.append(config["base_genome"]["fasta"])
 
@@ -53,7 +53,7 @@ use rule * from igv as igv_*
 
 
 rule all:
+    default_target: True
     input:
         rules.bowtie2_bowtie2_build_index_workflow_all.input,
         rules.igv_make_igv_genome_workflow_all.input,
-    default_target: True

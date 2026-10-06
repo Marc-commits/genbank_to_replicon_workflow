@@ -59,3 +59,14 @@ def test_combine_gffs_skips_unset_optional_paths(fns, tmp_path):
     fns["combine_gffs"](["", None, str(replicon)], str(out), header=True)
     content = out.read_text()
     assert content.count("ID=gene-a") == 1
+
+
+def test_combine_gffs_base_only_skips_absent_replicon(fns, tmp_path):
+    base = tmp_path / "base.gff3"
+    base.write_text("##gff-version 3\ncontig1\tsrc\tgene\t1\t10\t.\t+\t.\tID=gene-a\n")
+    out = tmp_path / "combined.gff3"
+    fns["combine_gffs"]([str(base), None], str(out), header=True)
+    lines = out.read_text().splitlines()
+    assert lines[0] == "##gff-version 3"
+    assert "ID=gene-a" in lines[1]
+    assert len([line for line in lines if line.strip()]) == 2

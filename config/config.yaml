@@ -1,4 +1,6 @@
 ---
+# `input` may be removed entirely for a base-genome-only build; then
+# base_genome.{fasta,genes_gff,transcripts_gff} are all required.
 input:
   mode: "genbank"  # or "fasta_gff"
   genbank: "resources/example.gb"

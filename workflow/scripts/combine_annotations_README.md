@@ -7,9 +7,11 @@ plotting in the parent RNA-seq workflow) sees one consistent annotation
 set spanning every contig in the combined FASTA.
 
 **Inputs** (`snakemake.input`): `replicon_genes_gff`,
-`replicon_transcripts_gff` — always present; `base_genes_gff`,
-`base_transcripts_gff` — present only when `config["base_genome"]["fasta"]`
-is set (see `HAS_BASE_GENOME` in `workflow/rules/common.smk`).
+`replicon_transcripts_gff` — present unless the build is base-genome-only
+(`config["input"]` omitted, see `HAS_REPLICON` in
+`workflow/rules/common.smk`); `base_genes_gff`, `base_transcripts_gff` —
+present only when `config["base_genome"]["fasta"]` is set
+(`HAS_BASE_GENOME`).
 
 **Outputs**: `genes_gff`, `transcripts_gff` — combined GFFs at
 `{output_prefix}.genes.gff3` / `{output_prefix}.transcripts.gff3`.
@@ -21,7 +23,8 @@ is set (see `HAS_BASE_GENOME` in `workflow/rules/common.smk`).
   into one FASTA does not renumber coordinates, so no coordinate
   translation is needed.
 - The base genome's file (when present) comes first, replicon's rows are
-  appended after.
+  appended after. With no replicon, the output is the base genome's GFFs
+  re-emitted with the normalized header (genes) / without it (transcripts).
 - `##gff-version 3` pragma lines are stripped from every input file body
   and written back exactly once at the top of the genes GFF — matching
   the RefSeq-style dialect. The transcripts GFF intentionally omits the
