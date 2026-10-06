@@ -67,6 +67,15 @@ module replicon:
 use rule * from replicon as replicon_*
 ```
 
+## Base-genome-only mode
+
+Omit `input` and set `base_genome.{fasta,genes_gff,transcripts_gff}` to build
+the bowtie2 index, IGV genome and `{output_prefix}.{genes,transcripts}.gff3`
+from an existing genome alone (no extra replicon). As a module, simply leave
+`"input"` out of the config dict. Standalone, remove the `input:` block from
+`config/config.yaml` (the Snakefile's `configfile:` is deep-merged with any
+`--configfile`, so a command-line config cannot delete it).
+
 ## Limitations
 
 - **`fasta_gff` mode only supports genes, not real transcripts.** The

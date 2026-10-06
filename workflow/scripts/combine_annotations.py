@@ -12,8 +12,10 @@ Called via Snakemake script: directive. Receives paths through the snakemake
 object injected at runtime.
 
 Input (snakemake.input):
-    replicon_genes_gff        — genes GFF for the parsed replicon
-    replicon_transcripts_gff  — transcripts GFF for the parsed replicon
+    replicon_genes_gff        — optional: genes GFF for the parsed replicon (absent
+                                in a base-genome-only build)
+    replicon_transcripts_gff  — optional: transcripts GFF for the parsed replicon
+                                (absent in a base-genome-only build)
     base_genes_gff            — optional: existing genome's genes GFF ("" if unset)
     base_transcripts_gff      — optional: existing genome's transcripts GFF ("" if unset)
 
@@ -21,7 +23,7 @@ Output (snakemake.output):
     genes_gff        — combined genes GFF
     transcripts_gff  — combined transcripts GFF
 
-version: 0.1.0
+version: 0.2.0
 author: Marc Broghammer
 email: marc.broghammer@gmx.de
 """
@@ -50,12 +52,15 @@ def combine_gffs(paths: list, output_path: str, header: bool) -> None:
 # genes GFF follows the RefSeq-style dialect (has a ##gff-version header);
 # transcripts GFF follows the ANNOgesic-style dialect (no header, ### separators).
 combine_gffs(  # noqa: F821
-    [snakemake.input.get("base_genes_gff"), snakemake.input.replicon_genes_gff],
+    [snakemake.input.get("base_genes_gff"), snakemake.input.get("replicon_genes_gff")],
     str(snakemake.output.genes_gff),
     header=True,
 )
 combine_gffs(  # noqa: F821
-    [snakemake.input.get("base_transcripts_gff"), snakemake.input.replicon_transcripts_gff],
+    [
+        snakemake.input.get("base_transcripts_gff"),
+        snakemake.input.get("replicon_transcripts_gff"),
+    ],
     str(snakemake.output.transcripts_gff),
     header=False,
 )
