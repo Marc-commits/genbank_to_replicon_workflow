@@ -25,11 +25,6 @@
 
 ## Workflow audit findings (2026-09-19, see `2026-09-19_AUDIT.md`)
 
-- Run `snakefmt` on `Snakefile` and `workflow/rules/parse_replicon.smk` —
-  directive ordering (`default_target:`/`params:` placement) is off.
-- Embed `workflow/rulegraph.svg` in README.md and add a pipeline-overview
-  table + explicit Prerequisites section.
-- Remove stale `.tests/unit/genbank_to_replicon/data/.snakemake/log/*.log`.
 - Add `LICENSE`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md` (license choice
   pending).
 - Add `config/README.md` with extended config docs.

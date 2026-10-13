@@ -28,6 +28,16 @@ for downstream RNA-seq analysis. Composes two smaller reusable modules
    — builds a flat IGV JSON genome descriptor (`.json`) referencing the
    combined FASTA, its `.fai` index, and the combined genes GFF.
 
+![rulegraph](workflow/rulegraph.svg)
+
+## Prerequisites
+
+- [Snakemake](https://snakemake.readthedocs.io/)
+- conda or mamba (for `--sdm conda`/`--use-conda`, which provisions
+  Biopython and the other per-rule environments under
+  `workflow/envs/`)
+- git (for `git submodule update --init --recursive`)
+
 ## Usage as a standalone workflow
 
 ```bash

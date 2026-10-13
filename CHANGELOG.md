@@ -5,6 +5,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added (Unreleased)
+
+- README: embedded `workflow/rulegraph.svg` and added a Prerequisites
+  section (Snakemake, conda/mamba, git).
+
 ## [0.4.0] - 2026-10-06
 
 ### Added (0.4.0)
