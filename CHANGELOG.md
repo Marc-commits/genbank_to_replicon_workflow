@@ -10,6 +10,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - README: embedded `workflow/rulegraph.svg` and added a Prerequisites
   section (Snakemake, conda/mamba, git).
 
+### Changed (Unreleased)
+
+- Rulegraph regeneration moved from `.envrc` into the justfile recipe
+  `just chore` (built from the unit-test config and data); direnv no longer
+  rewrites `workflow/rulegraph.svg` on `cd`.
+
 ## [0.4.0] - 2026-10-06
 
 ### Added (0.4.0)

@@ -27,3 +27,10 @@ lint: dry
 fmt:
     snakefmt Snakefile
     snakefmt workflow/rules/
+
+# regenerate workflow/rulegraph.svg (from the unit-test config/data)
+chore:
+    PYTHONHASHSEED=0 snakemake --rulegraph --forceall \
+        --configfile .tests/unit/genbank_to_replicon/config/config.yaml \
+        --directory .tests/unit/genbank_to_replicon/data \
+        2>/dev/null | dot -Tsvg >workflow/rulegraph.svg
