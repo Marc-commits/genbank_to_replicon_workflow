@@ -5,6 +5,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed (Unreleased)
+
+- justfile rulegraph recipes no longer discard snakemake stderr and now fail
+  on pipeline errors (`pipefail`), so a failed rulegraph is reported.
+
 ### Added (Unreleased)
 
 - README: embedded `workflow/rulegraph.svg` and added a Prerequisites
