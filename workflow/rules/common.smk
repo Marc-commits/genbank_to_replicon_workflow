@@ -1,5 +1,3 @@
-validate(config, "../schemas/config.schema.yaml")
-
 VALID_MODES = ("genbank", "fasta_gff")
 
 HAS_BASE_GENOME = bool(config.get("base_genome", {}).get("fasta"))

@@ -17,6 +17,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed (Unreleased)
 
+- `validate(config, ...)` moved from `workflow/rules/common.smk` into the
+  `Snakefile` (right after `configfile:`) and now resolves the schema via
+  `workflow.source_path(...)`, so every top-level Snakefile validates its
+  config uniformly.
 - Rulegraph regeneration moved from `.envrc` into the justfile recipe
   `just chore` (built from the unit-test config and data); direnv no longer
   rewrites `workflow/rulegraph.svg` on `cd`.

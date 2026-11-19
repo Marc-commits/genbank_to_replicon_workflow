@@ -4,6 +4,9 @@ from snakemake.utils import validate
 configfile: "config/config.yaml"
 
 
+validate(config, workflow.source_path("workflow/schemas/config.schema.yaml"))
+
+
 include: "workflow/rules/common.smk"
 include: "workflow/rules/parse_replicon.smk"
 include: "workflow/rules/combine.smk"
