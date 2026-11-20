@@ -5,17 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Fixed (Unreleased)
+## [0.5.0] - 2026-11-20
+
+### Fixed (0.5.0)
 
 - justfile rulegraph recipes no longer discard snakemake stderr and now fail
   on pipeline errors (`pipefail`), so a failed rulegraph is reported.
 
-### Added (Unreleased)
+### Added (0.5.0)
 
 - README: embedded `workflow/rulegraph.svg` and added a Prerequisites
   section (Snakemake, conda/mamba, git).
 
-### Changed (Unreleased)
+### Changed (0.5.0)
 
 - `validate(config, ...)` moved from `workflow/rules/common.smk` into the
   `Snakefile` (right after `configfile:`) and now resolves the schema via
