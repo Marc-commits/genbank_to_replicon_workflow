@@ -57,7 +57,7 @@ repos:
   # so tests/ and .tests/ (pytest helper modules + test files, not
   # project deliverables) are excluded explicitly below.
   - repo: https://github.com/Marc-commits/pre-commit-hooks
-    rev: v0.10.0
+    rev: v0.11.0
     hooks:
       - id: validate-config
       - id: snakemake-lint
