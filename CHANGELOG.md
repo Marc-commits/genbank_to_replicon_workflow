@@ -7,6 +7,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed (Unreleased)
 
+- README trimmed to user-facing content (116 -> 102 lines): the "Tests"
+  section is removed, the `fasta_gff` limitation no longer points at script
+  internals, and the "(included as git submodules)" aside is dropped.
 - `.pre-commit-config.yaml`: `Marc-commits/pre-commit-hooks` bumped from v0.3.3
   to v0.10.0; new `snakemake-config-validate` hook validates the config files
   against `workflow/schemas/config.schema.yaml` at commit time.

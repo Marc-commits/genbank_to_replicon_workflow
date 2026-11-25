@@ -5,7 +5,7 @@ chromosome, ...) from either a GenBank record or a FASTA+GFF3 pair, select
 named genes of interest, optionally combine it with an existing base
 genome, and produce a bowtie2 index plus an IGV JSON genome descriptor ready
 for downstream RNA-seq analysis. Composes two smaller reusable modules
-(included as git submodules) rather than reimplementing indexing/IGV logic.
+rather than reimplementing indexing/IGV logic.
 
 ## What it does
 
@@ -88,17 +88,11 @@ from an existing genome alone (no extra replicon). As a module, simply leave
 
 ## Limitations
 
-- **`fasta_gff` mode only supports genes, not real transcripts.** The
-  input GFF3 is parsed for `gene` feature rows only;
-  `fasta_gff3_to_replicon.py` synthesizes a `transcripts_gff` that is a
-  1:1 mirror of each gene span
-  (one transcript per gene, identical coordinates) rather than real
-  transcript/mRNA/exon annotation. If the source GFF3 encodes UTRs,
-  multi-exon structure, or alternate isoforms at the transcript level,
-  none of that is represented in this mode's output. A
-  `logging.warning(...)` is emitted every time this happens (see
-  `logs/fasta_gff3_to_replicon/fasta_gff3_to_replicon.log`); details in
-  `workflow/scripts/fasta_gff3_to_replicon_README.md`.
+- **`fasta_gff` mode only supports genes, not real transcripts.** Only
+  `gene` rows of the GFF3 are read; the transcripts GFF is synthesized as one
+  transcript per gene with identical coordinates. UTRs, multi-exon structure
+  and isoforms in the source GFF3 are not represented. A warning is written to
+  `logs/fasta_gff3_to_replicon/fasta_gff3_to_replicon.log` every time.
 - `genbank` mode's gene matching is a case-insensitive substring match
   against each feature's `/label` qualifier — a substring shared between
   two features' labels (e.g. `"AmpR"` vs `"AmpR promoter"`) can
@@ -106,11 +100,3 @@ from an existing genome alone (no extra replicon). As a module, simply leave
 - `combine_annotations` is plain concatenation, not a coordinate-aware
   merge; it assumes the replicon's `contig_name` doesn't collide with any
   contig already present in the base genome.
-
-## Tests
-
-- `tests/` — pytest unit tests for the pure functions in
-  `workflow/scripts/{genbank_to_replicon,fasta_gff3_to_replicon,combine_annotations}.py`.
-- `.tests/unit/` — Snakemake rule-level integration tests
-  (`pytest .tests/unit`), generated/maintained following
-  `snakemake --generate-unit-tests` conventions.
