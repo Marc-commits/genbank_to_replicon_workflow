@@ -72,3 +72,8 @@ repos:
         exclude: '(^|/)(tests|\.tests)/'
       - id: readme-no-local-paths
       - id: readme-url-check
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint

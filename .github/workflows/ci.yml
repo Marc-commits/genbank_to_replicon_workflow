@@ -1,0 +1,74 @@
+---
+# Local CI: run with `just ci_local` (gh act). workflow_dispatch only, so
+# GitHub never runs it on push.
+name: ci
+
+"on":
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    env:
+      CONDA_SOLVER: rattler
+      # snakemake-rulegraph, snakemake-lint: parsing the workflow needs the
+      # (private) bowtie2_build_index and make_IGV_genome submodules, which
+      # a clean checkout lacks; the rulegraph SVG also differs with the
+      # graphviz version
+      SKIP: snakemake-rulegraph,snakemake-lint
+    steps:
+      - uses: actions/checkout@v4
+
+      # shellcheck/shfmt: the shell hooks; libuv1t64/libnode109: runtime libs
+      # of the P3M binaries (fs, V8) that the lorenzwalthert/precommit renv
+      # env installs
+      - name: System tools
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            shellcheck shfmt libuv1t64 libnode109
+
+      # one env for hooks and tests: snakemake tooling, the test imports
+      # (biopython, gffutils, jsonschema, pytest, pyyaml) and R + littler
+      # (pre-commit sets up the R hook envs even without .r files)
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: ci
+          cache-environment: true
+          condarc: |
+            channels: [conda-forge, bioconda]
+            channel_priority: strict
+          create-args: >-
+            snakemake>=9 snakedeploy conda conda-rattler-solver just
+            python=3.12 biopython gffutils jsonschema pytest pyyaml
+            r-base=4.4 r-littler
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install pre-commit
+        run: uv tool install pre-commit
+
+      # R hooks (lorenzwalthert/precommit) keep their renv env in
+      # ~/.cache/pre-commit but link packages from renv's global cache
+      - name: Cache pre-commit envs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pre-commit
+            ~/.cache/R/renv
+          key: pre-commit-r-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure
+
+      - name: Config validation
+        run: just config-validation
+
+      # tests/ only: the rule tests in .tests/unit and a dry run load the
+      # private submodules, which a clean checkout lacks; they stay local
+      - name: Tests
+        run: pytest tests/

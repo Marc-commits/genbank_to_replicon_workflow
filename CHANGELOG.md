@@ -18,6 +18,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added (Unreleased)
 
+- Local CI workflow `.github/workflows/ci.yml` (workflow_dispatch only, never
+  triggered on GitHub) and `just ci_local` to run it with `gh act`:
+  pre-commit on all files (`snakemake-rulegraph` and `snakemake-lint`
+  skipped, parsing the workflow needs the private submodules), config
+  validation and `pytest tests/` (23 tests). The rule tests in `.tests/unit`
+  and the dry run load the submodules and stay local.
+- `.pre-commit-config.yaml`: `rhysd/actionlint` hook (v1.7.12) to lint the
+  GitHub Actions workflow.
 - `just config-validation` (also a dependency of `just lint`): validates
   `config/config.yaml` against `workflow/schemas/config.schema.yaml` with
   `check-jsonschema` (via `uvx`), reporting all errors at once without parsing
